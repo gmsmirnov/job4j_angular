@@ -1,6 +1,23 @@
 <div class="container">
   <br/>
   <br/>
+  <app-statistic></app-statistic>
+  <br/>
+  <div class="row">
+    <div class="col-md-6 col-lg-3 col-xl-3"></div>
+    <div class="col-md-6 col-lg-3 col-xl-3">
+
+    </div>
+    <div class="col-md-6 col-lg-3 col-xl-3">
+      <p>Показывать завершенные задачи</p>
+      <input type="checkbox" (change)="filterTasks($event)">
+    </div>
+    <div class="col-md-6 col-lg-3 col-xl-3">
+      <button class="btn btn-outline-dark" (click)="addTask()">Добавить задачу</button>
+    </div>
+  </div>
+  <br/>
+  <br/>
   <table class="table" style="text-align:left">
     <thead class="thead-dark">
     <tr>
@@ -8,6 +25,7 @@
       <th>Категория</th>
       <th>Дата начала</th>
       <th>Дата окончания</th>
+      <th>Статус</th>
     </tr>
     </thead>
     <tbody>
@@ -16,31 +34,37 @@
       <td>Angular</td>
       <td>14/07/2019</td>
       <td>15/07/2019</td>
+      <td></td>
     </tr>
     <tr>
       <td>Пройти раздел "Дериктивы и пайпы"</td>
       <td>Angular</td>
       <td>15/07/2019</td>
       <td>16/07/2019</td>
+      <td></td>
     </tr>
     <tr>
       <td>Пройти раздел "Внедрение зависимостей"</td>
       <td>Angular</td>
       <td>16/07/2019</td>
       <td>17/07/2019</td>
+      <td></td>
     </tr>
     <tr>
       <td>Пройти раздел "Маршрутизация, модули"</td>
       <td>Angular</td>
       <td>17/07/2019</td>
       <td>18/07/2019</td>
+      <td></td>
     </tr>
     <tr>
       <td>Пройти раздел "Работа с формами"</td>
       <td>Angular</td>
       <td>18/07/2019</td>
       <td>19/07/2019</td>
+      <td></td>
     </tr>
+      <app-list-row></app-list-row>
     </tbody>
   </table>
 </div>
