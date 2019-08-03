@@ -1,7 +1,13 @@
-<div class="container">
+<div class="container-fluid">
   <br/>
   <br/>
-  <app-statistic></app-statistic>
+  <app-statistic
+    [tasksAll]="getTasksListSize()"
+    [tasksPlanned]="getTasksAmountByStatus('Запланировано')"
+    [tasksOverdue]="getTasksAmountByStatus('Просрочено')"
+    [tasksFinished]="getTasksAmountByStatus('Выполнено')"
+  >
+  </app-statistic>
   <br/>
   <div class="row">
     <div class="col-md-6 col-lg-3 col-xl-3"></div>
@@ -18,53 +24,63 @@
   </div>
   <br/>
   <br/>
-  <table class="table" style="text-align:left">
-    <thead class="thead-dark">
-    <tr>
-      <th>Название задачи</th>
-      <th>Категория</th>
-      <th>Дата начала</th>
-      <th>Дата окончания</th>
-      <th>Статус</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>Пройти раздел "Базовый синтаксис"</td>
-      <td>Angular</td>
-      <td>14/07/2019</td>
-      <td>15/07/2019</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Пройти раздел "Дериктивы и пайпы"</td>
-      <td>Angular</td>
-      <td>15/07/2019</td>
-      <td>16/07/2019</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Пройти раздел "Внедрение зависимостей"</td>
-      <td>Angular</td>
-      <td>16/07/2019</td>
-      <td>17/07/2019</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Пройти раздел "Маршрутизация, модули"</td>
-      <td>Angular</td>
-      <td>17/07/2019</td>
-      <td>18/07/2019</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Пройти раздел "Работа с формами"</td>
-      <td>Angular</td>
-      <td>18/07/2019</td>
-      <td>19/07/2019</td>
-      <td></td>
-    </tr>
-      <app-list-row></app-list-row>
-    </tbody>
-  </table>
+
+  <div class="container-fluid">
+    <div class="row divTableHead" style="text-align:left">
+      <div class="col-md-5 col-lg-5 col-xs-5">Название задачи</div>
+      <div class="col-md-2 col-lg-2 col-xs-2">Категория</div>
+      <div class="col-md-1 col-lg-1 col-xs-1">Дата начала</div>
+      <div class="col-md-1 col-lg-1 col-xs-1">Дата окончания</div>
+      <div class="col-md-2 col-lg-2 col-xs-2">Статус</div>
+      <div class="col-md-1 col-lg-1 col-xs-1"></div>
+    </div>
+    <app-list-row
+      [name]="tasks[0].name"
+      [category]="tasks[0].category"
+      [dateStart]="tasks[0].dateStart"
+      [dateEnd]="tasks[0].dateEnd"
+      [status]="tasks[0].status"
+      (deleteTaskEmitter)="deleteTaskFromArray($event)"
+    ></app-list-row>
+    <app-list-row
+      [name]="tasks[1].name"
+      [category]="tasks[1].category"
+      [dateStart]="tasks[1].dateStart"
+      [dateEnd]="tasks[1].dateEnd"
+      [status]="tasks[1].status"
+      (deleteTaskEmitter)="deleteTaskFromArray($event)"
+    ></app-list-row>
+    <app-list-row
+      [name]="tasks[2].name"
+      [category]="tasks[2].category"
+      [dateStart]="tasks[2].dateStart"
+      [dateEnd]="tasks[2].dateEnd"
+      [status]="tasks[2].status"
+      (deleteTaskEmitter)="deleteTaskFromArray($event)"
+    ></app-list-row>
+    <app-list-row
+      [name]="tasks[3].name"
+      [category]="tasks[3].category"
+      [dateStart]="tasks[3].dateStart"
+      [dateEnd]="tasks[3].dateEnd"
+      [status]="tasks[3].status"
+      (deleteTaskEmitter)="deleteTaskFromArray($event)"
+    ></app-list-row>
+    <app-list-row
+      [name]="tasks[4].name"
+      [category]="tasks[4].category"
+      [dateStart]="tasks[4].dateStart"
+      [dateEnd]="tasks[4].dateEnd"
+      [status]="tasks[4].status"
+      (deleteTaskEmitter)="deleteTaskFromArray($event)"
+    ></app-list-row>
+    <app-list-row
+      [name]="'Название 10'"
+      [category]="'Категория 10'"
+      [dateStart]="'08/10/2018'"
+      [dateEnd]="'08/10/2018'"
+      [status]="'Завершено'"
+      (deleteTaskEmitter)="deleteTaskFromArray($event)"
+    ></app-list-row>
+  </div>
 </div>

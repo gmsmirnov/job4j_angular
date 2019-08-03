@@ -1,0 +1,8 @@
+.divTableRow {
+  color: #212529;
+  background-color: white;
+  text-align: left;
+  border-bottom: darkgray;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
