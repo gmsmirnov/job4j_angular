@@ -3,6 +3,6 @@
   <div class="col-md-2 col-lg-2 col-xs-2">{{ category }}</div>
   <div class="col-md-1 col-lg-1 col-xs-1">{{ dateStart }}</div>
   <div class="col-md-1 col-lg-1 col-xs-1">{{ dateEnd }}</div>
-  <div class="col-md-2 col-lg-2 col-xs-2">{{ status }}</div>
+  <div class="col-md-2 col-lg-2 col-xs-2" [ngClass]="{'tasksOverdue' : status === 'Просрочено'}">{{ status }}</div>
   <div class="col-md-1 col-lg-1 col-xs-1"><button class="btn btn-danger" (click)="deleteTask()">Удалить задачу</button></div>
 </div>

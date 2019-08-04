@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { findIndex } from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+  finished: boolean;
+
   tasks = [
     {
       name: 'Пройти раздел \"Базовый синтаксис\"',
@@ -41,6 +44,13 @@ export class TaskListComponent implements OnInit {
       dateStart: '10/08/2019',
       dateEnd: '19/08/2019',
       status: 'Запланировано'
+    },
+    {
+      name: 'Пройти раздел \"Работа с формами1\"',
+      category: 'Angular',
+      dateStart: '10/08/2019',
+      dateEnd: '19/08/2019',
+      status: 'Запланировано'
     }
   ];
 
@@ -55,6 +65,7 @@ export class TaskListComponent implements OnInit {
 
   filterTasks($event) {
     console.log($event.target.checked);
+    this.finished = $event.target.checked;
   }
 
   getTasksListSize() {
@@ -66,6 +77,10 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTaskFromArray(name: string) {
+    let index = this.tasks.findIndex((task) => task.name === name);
+    if (index > -1) {
+      this.tasks.splice(index, 1);
+    }
     console.log('Задача ' + name + ' удалена');
   }
 }

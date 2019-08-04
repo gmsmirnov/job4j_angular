@@ -34,53 +34,15 @@
       <div class="col-md-2 col-lg-2 col-xs-2">Статус</div>
       <div class="col-md-1 col-lg-1 col-xs-1"></div>
     </div>
-    <app-list-row
-      [name]="tasks[0].name"
-      [category]="tasks[0].category"
-      [dateStart]="tasks[0].dateStart"
-      [dateEnd]="tasks[0].dateEnd"
-      [status]="tasks[0].status"
-      (deleteTaskEmitter)="deleteTaskFromArray($event)"
-    ></app-list-row>
-    <app-list-row
-      [name]="tasks[1].name"
-      [category]="tasks[1].category"
-      [dateStart]="tasks[1].dateStart"
-      [dateEnd]="tasks[1].dateEnd"
-      [status]="tasks[1].status"
-      (deleteTaskEmitter)="deleteTaskFromArray($event)"
-    ></app-list-row>
-    <app-list-row
-      [name]="tasks[2].name"
-      [category]="tasks[2].category"
-      [dateStart]="tasks[2].dateStart"
-      [dateEnd]="tasks[2].dateEnd"
-      [status]="tasks[2].status"
-      (deleteTaskEmitter)="deleteTaskFromArray($event)"
-    ></app-list-row>
-    <app-list-row
-      [name]="tasks[3].name"
-      [category]="tasks[3].category"
-      [dateStart]="tasks[3].dateStart"
-      [dateEnd]="tasks[3].dateEnd"
-      [status]="tasks[3].status"
-      (deleteTaskEmitter)="deleteTaskFromArray($event)"
-    ></app-list-row>
-    <app-list-row
-      [name]="tasks[4].name"
-      [category]="tasks[4].category"
-      [dateStart]="tasks[4].dateStart"
-      [dateEnd]="tasks[4].dateEnd"
-      [status]="tasks[4].status"
-      (deleteTaskEmitter)="deleteTaskFromArray($event)"
-    ></app-list-row>
-    <app-list-row
-      [name]="'Название 10'"
-      [category]="'Категория 10'"
-      [dateStart]="'08/10/2018'"
-      [dateEnd]="'08/10/2018'"
-      [status]="'Завершено'"
-      (deleteTaskEmitter)="deleteTaskFromArray($event)"
-    ></app-list-row>
+    <ng-container *ngFor="let task of tasks">
+      <app-list-row *ngIf="((!finished && task.status !== 'Выполнено') || (finished))"
+                    [name]="task.name"
+                    [category]="task.category"
+                    [dateStart]="task.dateStart"
+                    [dateEnd]="task.dateEnd"
+                    [status]="task.status"
+                    (deleteTaskEmitter)="deleteTaskFromArray($event)"
+      ></app-list-row>
+    </ng-container>
   </div>
 </div>
