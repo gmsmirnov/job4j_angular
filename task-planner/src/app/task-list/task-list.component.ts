@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { findIndex } from 'rxjs/operators';
+import { Task } from './task.model';
 
 @Component({
   selector: 'app-task-list',
@@ -9,58 +9,55 @@ import { findIndex } from 'rxjs/operators';
 export class TaskListComponent implements OnInit {
   finished: boolean;
 
-  tasks = [
-    {
-      name: 'Пройти раздел \"Базовый синтаксис\"',
-      category: 'Angular',
-      dateStart: '14/07/2019',
-      dateEnd: '25/07/2019',
-      status: 'Выполнено'
-    },
-    {
-      name: 'Пройти раздел \"Дериктивы и пайпы\"',
-      category: 'Angular',
-      dateStart: '26/07/2019',
-      dateEnd: '02/08/2019',
-      status: 'Просрочено'
-    },
-    {
-      name: 'Пройти раздел \"Внедрение зависимостей\"',
-      category: 'Angular',
-      dateStart: '03/08/2019',
-      dateEnd: '07/08/2019',
-      status: 'Запланировано'
-    },
-    {
-      name: 'Пройти раздел \"Маршрутизация, модули\"',
-      category: 'Angular',
-      dateStart: '08/08/2019',
-      dateEnd: '10/08/2019',
-      status: 'Запланировано'
-    },
-    {
-      name: 'Пройти раздел \"Работа с формами\"',
-      category: 'Angular',
-      dateStart: '10/08/2019',
-      dateEnd: '19/08/2019',
-      status: 'Запланировано'
-    },
-    {
-      name: 'Пройти раздел \"Работа с формами1\"',
-      category: 'Angular',
-      dateStart: '10/08/2019',
-      dateEnd: '19/08/2019',
-      status: 'Запланировано'
-    }
+  tasks: Task[] = [
+    new Task(
+      'Пройти раздел \"Базовый синтаксис\"',
+      'Angular',
+      '14/07/2019',
+      '25/07/2019',
+      'Выполнено'
+    ),
+    new Task(
+      'Пройти раздел \"Дериктивы и пайпы\"',
+      'Angular',
+      '26/07/2019',
+      '02/08/2019',
+      'Просрочено'
+    ),
+    new Task(
+      'Пройти раздел \"Внедрение зависимостей\"',
+      'Angular',
+      '03/08/2019',
+      '07/08/2019',
+      'Запланировано'
+    ),
+    new Task(
+      'Пройти раздел \"Маршрутизация, модули\"',
+      'Angular',
+      '08/08/2019',
+      '10/08/2019',
+      'Запланировано'
+    ),
+    new Task(
+      'Пройти раздел \"Работа с формами\"',
+      'Angular',
+      '10/08/2019',
+      '19/08/2019',
+      'Запланировано'
+    ),
+    new Task(
+      'Пройти раздел \"Работа с формами1\"',
+      'Angular',
+      '10/08/2019',
+      '19/08/2019',
+      'Запланировано'
+    )
   ];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
   }
 
-  addTask() {
-    console.log('Задача создана!')
+  ngOnInit() {
   }
 
   filterTasks($event) {
@@ -81,6 +78,11 @@ export class TaskListComponent implements OnInit {
     if (index > -1) {
       this.tasks.splice(index, 1);
     }
-    console.log('Задача ' + name + ' удалена');
+    console.log('Задача ' + name + ' удалена!');
+  }
+
+  addTaskToArray(task: Task) {
+    this.tasks.push(task);
+    console.log('Задача ' + task.name + ' создана!');
   }
 }
