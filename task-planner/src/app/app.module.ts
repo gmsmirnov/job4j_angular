@@ -8,7 +8,7 @@ import { TaskListComponent } from './task-list/task-list.component';
 import { StatisticComponent } from './task-list/statistic/statistic.component';
 import { ListRowComponent } from './task-list/list-row/list-row.component';
 import { TaskAddComponent } from './task-list/task-add/task-add.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,13 +1,15 @@
-<div class="mb-3 input-group-sm">
-  <input type="text" class="form-control" placeholder="Задача" [(ngModel)]="name">
-</div>
-<div class="mb-3 input-group-sm">
-  <input type="text" class="form-control" placeholder="Категория" [(ngModel)]="category">
-</div>
-<div class="mb-3 input-group-sm">
-  <input type="text" class="form-control" placeholder="Дата начала" [(ngModel)]="dateStart">
-</div>
-<div class="mb-3 input-group-sm">
-  <input type="text" class="form-control" placeholder="Дата окончания" [(ngModel)]="dateEnd">
-</div>
-<button class="btn btn-outline-dark" (click)="addTask()">Добавить задачу</button>
+<form [formGroup]="newTaskForm" novalidate>
+  <div class="mb-3 input-group-sm">
+    <input type="text" class="form-control" placeholder="Задача" formControlName="name">
+  </div>
+  <div class="mb-3 input-group-sm">
+    <input type="text" class="form-control" placeholder="Категория" formControlName="category">
+  </div>
+  <div class="mb-3 input-group-sm">
+    <input type="text" class="form-control" placeholder="Дата начала" formControlName="dateStart">
+  </div>
+  <div class="mb-3 input-group-sm">
+    <input type="text" class="form-control" placeholder="Дата окончания" formControlName="dateEnd">
+  </div>
+  <button class="btn btn-outline-dark" (click)="addTask()">Добавить задачу</button>
+</form>
