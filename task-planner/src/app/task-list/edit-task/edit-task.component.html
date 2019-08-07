@@ -1,0 +1,42 @@
+<form [formGroup]="editTaskForm" novalidate>
+  <div class="mb-3 input-group-sm">
+    <input type="text" class="form-control" placeholder="Задача" formControlName="name">
+    <div class="text-danger font-weight-bold" *ngIf="editTaskForm.controls['name'].invalid && editTaskForm.controls['name'].touched">
+      Поле не заполнено!
+    </div>
+  </div>
+  <div class="mb-3 input-group-sm">
+    <input type="text" class="form-control" placeholder="Категория" formControlName="category">
+    <div class="text-danger font-weight-bold" *ngIf="editTaskForm.controls['category'].invalid && editTaskForm.controls['category'].touched">
+      Поле не заполнено!
+    </div>
+  </div>
+  <div class="mb-3 input-group-sm">
+    <input type="text" class="form-control" placeholder="Дата начала в формате DD/MM/YYYY" formControlName="dateStart">
+    <div class="text-danger font-weight-bold" *ngIf="editTaskForm.controls['dateStart'].invalid && editTaskForm.controls['dateStart'].touched">
+      Необходимо ввести дату в формате DD/MM/YYYY.
+    </div>
+  </div>
+  <div class="mb-3 input-group-sm">
+    <input type="text" class="form-control" placeholder="Дата окончания в формате DD/MM/YYYY" formControlName="dateEnd">
+    <div class="text-danger font-weight-bold" *ngIf="editTaskForm.controls['dateEnd'].invalid && editTaskForm.controls['dateEnd'].touched">
+      Необходимо ввести дату в формате DD/MM/YYYY.
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+    <button class="btn btn-outline-success length-9"
+            [disabled]="editTaskForm.controls['name'].invalid && editTaskForm.controls['name'].touched ||
+            editTaskForm.controls['category'].invalid && editTaskForm.controls['category'].touched ||
+            editTaskForm.controls['dateStart'].invalid && editTaskForm.controls['dateStart'].touched ||
+            editTaskForm.controls['dateEnd'].invalid && editTaskForm.controls['dateEnd'].touched"
+            (click)="save()">Сохранить
+    </button>
+    </div>
+    <div class="col-6">
+    <button class="btn btn-outline-primary length-9"
+            (click)="cancel()">Отмена
+    </button>
+    </div>
+  </div>
+</form>

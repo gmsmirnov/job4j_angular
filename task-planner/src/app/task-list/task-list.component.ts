@@ -7,7 +7,19 @@ import { Task } from './task.model';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+  // флаг для отображения завершенных заданий
   finished: boolean;
+
+  // флаг для изменения блока создать / отредактировать задание
+  isSelectedTask: boolean;
+
+  editTask: Task;
+
+  // сохраняем индекс переданного на редактирование задания
+  selectedIndex: number;
+
+  deleteSelected: boolean;
+
 
   tasks: Task[] = [
     new Task(
@@ -58,6 +70,7 @@ export class TaskListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isSelectedTask = false;
   }
 
   filterTasks($event) {
@@ -75,14 +88,41 @@ export class TaskListComponent implements OnInit {
 
   deleteTaskFromArray(name: string) {
     let index = this.tasks.findIndex((task) => task.name === name);
-    if (index > -1) {
+    if (index > -1 && index != this.selectedIndex) {
       this.tasks.splice(index, 1);
+      console.log('Задача ' + name + ' удалена!');
+    } else {
+      this.deleteSelected = true;
+      console.log('Нельзя удалять редактируемую задачу!');
     }
-    console.log('Задача ' + name + ' удалена!');
   }
 
   addTaskToArray(task: Task) {
     this.tasks.push(task);
     console.log('Задача ' + task.name + ' создана!');
+  }
+
+  editTaskInArray(task: Task) {
+    if (this.isSelectedTask) {
+      this.tasks[this.selectedIndex] = task;
+    }
+    this.isSelectedTask = false;
+    this.selectedIndex = -1;
+    this.deleteSelected = false;
+  }
+
+  cancelEditTask() {
+    this.isSelectedTask = false;
+    this.selectedIndex = -1;
+    this.deleteSelected = false;
+  }
+
+  editOn(task: Task) {
+    if (!this.isSelectedTask) {
+      this.selectedIndex = this.tasks.findIndex(item => item.name === task.name);
+    }
+    console.log('Индекс выделенной задачи ' + this.selectedIndex);
+    this.isSelectedTask = true;
+    this.editTask = task;
   }
 }

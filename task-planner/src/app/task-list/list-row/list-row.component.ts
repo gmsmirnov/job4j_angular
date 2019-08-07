@@ -7,11 +7,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ListRowComponent implements OnInit {
 
-  @Input() name;
-  @Input() category;
-  @Input() dateStart;
-  @Input() dateEnd;
-  @Input() status;
+  @Input() name: string;
+  @Input() category: string;
+  @Input() dateStart: string;
+  @Input() dateEnd: string;
+  @Input() status: string;
 
   @Output() deleteTaskEmitter = new EventEmitter<string>();
 

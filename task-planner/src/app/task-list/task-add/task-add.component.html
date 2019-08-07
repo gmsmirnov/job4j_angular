@@ -1,15 +1,33 @@
 <form [formGroup]="newTaskForm" novalidate>
   <div class="mb-3 input-group-sm">
     <input type="text" class="form-control" placeholder="Задача" formControlName="name">
+    <div class="text-danger font-weight-bold" *ngIf="newTaskForm.controls['name'].invalid && newTaskForm.controls['name'].touched">
+      Поле не заполнено!
+    </div>
   </div>
   <div class="mb-3 input-group-sm">
     <input type="text" class="form-control" placeholder="Категория" formControlName="category">
+    <div class="text-danger font-weight-bold" *ngIf="newTaskForm.controls['category'].invalid && newTaskForm.controls['category'].touched">
+      Поле не заполнено!
+    </div>
   </div>
   <div class="mb-3 input-group-sm">
-    <input type="text" class="form-control" placeholder="Дата начала" formControlName="dateStart">
+    <input type="text" class="form-control" placeholder="Дата начала в формате DD/MM/YYYY" formControlName="dateStart">
+    <div class="text-danger font-weight-bold" *ngIf="newTaskForm.controls['dateStart'].invalid && newTaskForm.controls['dateStart'].touched">
+      Необходимо ввести дату в формате DD/MM/YYYY.
+    </div>
   </div>
   <div class="mb-3 input-group-sm">
-    <input type="text" class="form-control" placeholder="Дата окончания" formControlName="dateEnd">
+    <input type="text" class="form-control" placeholder="Дата окончания в формате DD/MM/YYYY" formControlName="dateEnd">
+    <div class="text-danger font-weight-bold" *ngIf="newTaskForm.controls['dateEnd'].invalid && newTaskForm.controls['dateEnd'].touched">
+      Необходимо ввести дату в формате DD/MM/YYYY.
+    </div>
   </div>
-  <button class="btn btn-outline-dark" (click)="addTask()">Добавить задачу</button>
+  <button class="btn btn-outline-dark"
+          [disabled]="newTaskForm.controls['name'].invalid && newTaskForm.controls['name'].touched ||
+          newTaskForm.controls['category'].invalid && newTaskForm.controls['category'].touched ||
+          newTaskForm.controls['dateStart'].invalid && newTaskForm.controls['dateStart'].touched ||
+          newTaskForm.controls['dateEnd'].invalid && newTaskForm.controls['dateEnd'].touched"
+          (click)="addTask()">Добавить задачу
+  </button>
 </form>

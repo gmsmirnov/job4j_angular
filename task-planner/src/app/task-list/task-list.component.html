@@ -17,13 +17,21 @@
       <input type="checkbox" (change)="filterTasks($event)">
     </div>
     <div class="col-md-6 col-lg-3 col-xl-3">
-      <app-task-add (addTaskEmitter)="addTaskToArray($event)"></app-task-add>
+      <app-task-add *ngIf="!isSelectedTask" (addTaskEmitter)="addTaskToArray($event)"></app-task-add>
+      <app-edit-task *ngIf="isSelectedTask"
+                     [task]="editTask"
+                     (saveTaskEmitter)="editTaskInArray($event)"
+                     (cancelEmitter)="cancelEditTask($event)"
+      ></app-edit-task>
     </div>
   </div>
   <br/>
   <br/>
 
   <div class="container-fluid">
+    <div class="row alert alert-warning" *ngIf="deleteSelected !== undefined && deleteSelected">
+      <p class="font-weight-bold">Нельзя удалять редактируемую задачу!</p>
+    </div>
     <div class="row divTableHead" style="text-align:left">
       <div class="col-md-5 col-lg-5 col-xs-5">Название задачи</div>
       <div class="col-md-2 col-lg-2 col-xs-2">Категория</div>
@@ -40,6 +48,7 @@
                     [dateEnd]="task.dateEnd"
                     [status]="task.status"
                     (deleteTaskEmitter)="deleteTaskFromArray($event)"
+                    (click)="editOn(task)"
       ></app-list-row>
     </ng-container>
   </div>

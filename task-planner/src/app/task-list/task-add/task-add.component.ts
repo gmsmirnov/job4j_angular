@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Task } from '../task.model';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-task-add',
@@ -14,10 +14,24 @@ export class TaskAddComponent implements OnInit {
 
   constructor() {
     this.newTaskForm = new FormGroup({
-      name: new FormControl(null),
-      category: new FormControl(null),
-      dateStart: new FormControl(null),
-      dateEnd: new FormControl(null)
+      name: new FormControl(null, [
+        Validators.minLength(3),
+        Validators.maxLength(50),
+        Validators.required
+      ]),
+      category: new FormControl(null, [
+        Validators.minLength(3),
+        Validators.maxLength(50),
+        Validators.required
+      ]),
+      dateStart: new FormControl(null, [
+        Validators.pattern('(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d'),
+        Validators.required
+      ]),
+      dateEnd: new FormControl(null, [
+        Validators.pattern('(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d'),
+        Validators.required
+      ])
     });
   }
 
